@@ -11,11 +11,12 @@ class SetHubCommand extends PluginCommand{
         parent::__construct("sethub", Loader::getInstance());
     }
     public function execute(CommandSender $sender, Array $label, Args $args){
-        if(isset($args[0])){
-
-        }
         if ($sender->isOp()) {
-            
+            $sender->sendMessage($prefix . " " . $config->getConfig()->get("dontPermissions-message"));
         }
+
+        $config->setConfig()->set("lobby", $sender->getLevel());
+        $sender->sendMessage($prefix . " " . $config->getConfig()->get("sethub-message"));
+
     }
 }
